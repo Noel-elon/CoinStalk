@@ -12,7 +12,7 @@ class RemoteMapper @Inject constructor() : Mapper<List<StalkCache>, List<CoinRes
                     uuid = it.uuid,
                     symbol = it.symbol,
                     name = it.name,
-                    color = it.color,
+                    color = it.color ?: "",
                     iconUrl = it.iconUrl,
                     marketCap = it.marketCap,
                     price = it.price,

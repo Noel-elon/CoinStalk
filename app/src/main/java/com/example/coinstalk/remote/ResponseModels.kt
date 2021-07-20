@@ -13,7 +13,7 @@ data class CoinResponse(
     val uuid: String,
     val symbol: String,
     val name: String,
-    val color: String,
+    val color: String? = null,
     val iconUrl: String,
     val marketCap: String,
     val price: String,

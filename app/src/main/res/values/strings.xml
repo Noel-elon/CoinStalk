@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">CoinStalk</string>
+    <string name="home_menu">Home</string>
+    <string name="favourite_menu">Favourite</string>
+    <string name="settings_menu">Settings</string>
+    <string name="onboarding_desc">Get notified on prize changes on your favourite coins</string>
+    <string name="whats_your_name">Hey, what should we call you?</string>
+    <string name="your_name_hint">Your name here</string>
+    <string name="get_started">Get Started</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

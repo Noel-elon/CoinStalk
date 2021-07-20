@@ -4,5 +4,5 @@ import retrofit2.http.GET
 
 interface StalkApi {
     @GET("coins")
-    fun getCoins() : BaseResponse
+   suspend fun getCoins() : BaseResponse
 }

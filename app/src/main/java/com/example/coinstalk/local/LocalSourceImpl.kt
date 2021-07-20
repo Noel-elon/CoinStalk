@@ -16,16 +16,16 @@ class LocalSourceImpl @Inject constructor(
 
 ) : LocalDataSource {
 
-    override fun fetchAllCoins(coins: List<StalkCache>): Flow<List<StalkCoin>> {
+    override fun fetchAllCoins(): Flow<List<StalkCoin>> {
         return database.stalkDao().fetchCoins().map { data ->
             mapper.mapToSecond(data)
         }
     }
 
-    override fun saveCoins(coins: List<StalkCoin>): Flow<Unit> {
+    override fun saveCoins(coins: List<StalkCache>): Flow<Unit> {
         return flow {
             emit(
-                database.stalkDao().saveCoins(mapper.mapToFirst(coins))
+                database.stalkDao().saveCoins(coins)
             )
         }
     }

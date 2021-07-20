@@ -5,8 +5,8 @@ import com.example.coinstalk.local.StalkCache
 import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSource {
-    fun fetchAllCoins(coins : List<StalkCache>) : Flow<List<StalkCoin>>
-    fun saveCoins(coins: List<StalkCoin>) : Flow<Unit>
+    fun fetchAllCoins() : Flow<List<StalkCoin>>
+    fun saveCoins(coins: List<StalkCache>) : Flow<Unit>
     fun fetchCoinById(id : String) : Flow<StalkCoin>
     fun fetchFavouriteCoins(fav : Boolean) : Flow<List<StalkCoin>>
     fun updateCoin(id: String, fav: Boolean) : Flow<Unit>
