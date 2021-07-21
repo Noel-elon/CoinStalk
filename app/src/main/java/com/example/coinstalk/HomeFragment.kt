@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.coinstalk.adapters.CoinsAdapter
 import com.example.coinstalk.databinding.FragmentHomeBinding
 import com.example.coinstalk.utils.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,19 +30,26 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getRemoteCoins()
+        val coinAdapter = CoinsAdapter {
+            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+        }
+        binding.coinsRv.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = coinAdapter
+        }
 
         viewModel.coins.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Result.Success -> {
-                    binding.progress.visibility = View.INVISIBLE
-                    binding.homeTv.text = result.data.toString()
+                    coinAdapter.submitList(result.data)
                 }
                 is Result.Error -> {
-                    binding.progress.visibility = View.INVISIBLE
+
                     Toast.makeText(requireContext(), result.errorMessage, Toast.LENGTH_SHORT).show()
                 }
                 else -> {
-                    binding.progress.visibility = View.VISIBLE
+
                 }
             }
 
