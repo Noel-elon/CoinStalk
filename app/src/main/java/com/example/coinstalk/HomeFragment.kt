@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coinstalk.adapters.CoinsAdapter
+import com.example.coinstalk.adapters.GainersAdapter
 import com.example.coinstalk.databinding.FragmentHomeBinding
 import com.example.coinstalk.utils.Result
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,16 +34,28 @@ class HomeFragment : Fragment() {
         val coinAdapter = CoinsAdapter {
             Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
         }
+
+        val gainersAdapter = GainersAdapter {
+            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+        }
+
         binding.coinsRv.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = coinAdapter
         }
 
+        binding.gainersRv.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = gainersAdapter
+        }
+
         viewModel.coins.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Result.Success -> {
                     coinAdapter.submitList(result.data)
+                    gainersAdapter.submitList(result.data)
                 }
                 is Result.Error -> {
 
