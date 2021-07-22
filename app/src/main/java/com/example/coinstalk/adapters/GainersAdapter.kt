@@ -12,7 +12,7 @@ import com.example.coinstalk.databinding.TopGainersListItemBinding
 import com.example.coinstalk.utils.*
 
 class GainersAdapter(
-    private val itemClick: (position: Int) -> Unit
+    private val itemClick: (itemId: String) -> Unit
 ) : ListAdapter<StalkCoin, GainersAdapter.GainersViewHolder>(StalkDiffUtil()) {
 
 
@@ -32,7 +32,7 @@ class GainersAdapter(
             }
             imageView.loadUrl(item.iconUrl)
             root.setOnClickListener {
-                itemClick(adapterPosition)
+                itemClick(item.uuid)
             }
         }
     }

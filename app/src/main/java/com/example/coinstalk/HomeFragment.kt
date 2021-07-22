@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coinstalk.adapters.CoinsAdapter
 import com.example.coinstalk.adapters.GainersAdapter
@@ -32,11 +35,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getRemoteCoins()
         val coinAdapter = CoinsAdapter {
-            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+            val bundle = bundleOf("coin_id" to it)
+            findNavController().navigate(R.id.action_homeFragment_to_coinDetailFragment, bundle)
         }
 
         val gainersAdapter = GainersAdapter {
-            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+            val bundle = bundleOf("coin_id" to it)
+            findNavController().navigate(R.id.action_homeFragment_to_coinDetailFragment, bundle)
         }
 
         binding.coinsRv.apply {

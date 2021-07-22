@@ -12,7 +12,7 @@ import com.example.coinstalk.databinding.CoinsListItemBinding
 import com.example.coinstalk.utils.*
 
 class CoinsAdapter(
-    private val itemClick: (position: Int) -> Unit
+    private val itemClick: (id: String) -> Unit
 ) : ListAdapter<StalkCoin, CoinsAdapter.CoinViewHolder>(StalkDiffUtil()) {
 
 
@@ -30,11 +30,10 @@ class CoinsAdapter(
             } else {
                 gainTv.text = item.change.twoDecimals()
                 gainTv.setColor(R.color.red)
-
             }
             imageView.loadUrl(item.iconUrl)
             root.setOnClickListener {
-                itemClick(adapterPosition)
+                itemClick(item.uuid)
             }
         }
     }
