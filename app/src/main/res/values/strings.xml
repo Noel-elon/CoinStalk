@@ -7,9 +7,8 @@
     <string name="whats_your_name">Hey, what should we call you?</string>
     <string name="your_name_hint">Your name here</string>
     <string name="get_started">Get Started</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="all_coins">All Coins</string>
-    <string name="top_gainers">Top Gainers</string>
+    <string name="top_gainers">Day Gainers</string>
     <string name="hey_noel">Hey, Noel</string>
 </resources>
