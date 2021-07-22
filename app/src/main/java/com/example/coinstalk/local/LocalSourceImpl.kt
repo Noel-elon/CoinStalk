@@ -38,8 +38,8 @@ class LocalSourceImpl @Inject constructor(
 
     }
 
-    override fun fetchFavouriteCoins(fav: Boolean): Flow<List<StalkCoin>> {
-        return database.stalkDao().fetchFavouriteCoins(fav).map {
+    override fun fetchFavouriteCoins(): Flow<List<StalkCoin>> {
+        return database.stalkDao().fetchFavouriteCoins(true).map {
             mapper.mapToSecond(it)
         }
     }

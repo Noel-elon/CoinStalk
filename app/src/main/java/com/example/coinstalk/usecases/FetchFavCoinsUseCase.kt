@@ -9,5 +9,5 @@ class FetchFavCoinsUseCase @Inject constructor(
     private val coroutineDispatcher: CoroutineDispatcher,
     private val localDataSource: LocalDataSource
 ) {
-    fun execute(fav: Boolean) = localDataSource.fetchFavouriteCoins(fav).flowOn(coroutineDispatcher)
+    fun execute() = localDataSource.fetchFavouriteCoins().flowOn(coroutineDispatcher)
 }
