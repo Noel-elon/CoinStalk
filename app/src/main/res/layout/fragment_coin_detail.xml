@@ -119,12 +119,12 @@
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_8"
-        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginTop="16dp"
         android:background="@drawable/layout_bg"
+        android:padding="@dimen/margin_8"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
+        app:layout_constraintTop_toBottomOf="@+id/next_button">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -203,8 +203,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_4"
-                android:maxLines="1"
                 android:fontFamily="@font/montserrat"
+                android:maxLines="1"
                 android:text="2345565"
                 android:textSize="@dimen/small_text" />
 
@@ -214,19 +214,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/next_button"
-        style="@style/stalkButtonStyle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/ic_favorite_border"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/white"
-        android:text="Notify Me"
-        android:textColor="@color/black"
-        android:layout_marginTop="@dimen/margin_32"
-        app:cornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
         app:strokeColor="@color/purple_200"
         app:strokeWidth="1dp" />
 

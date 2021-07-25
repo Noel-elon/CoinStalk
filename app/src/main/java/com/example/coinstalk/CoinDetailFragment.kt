@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.example.coinstalk.databinding.FragmentCoinDetailBinding
 import com.example.coinstalk.databinding.FragmentHomeBinding
 import com.example.coinstalk.utils.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.lang.IllegalArgumentException
@@ -33,6 +34,7 @@ class CoinDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.findViewById<BottomNavigationView>(R.id.navigation)?.visibility = View.GONE
 
         coinId?.let {
             viewModel.getSingleCoin(it)

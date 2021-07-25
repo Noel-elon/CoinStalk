@@ -7,60 +7,49 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coinstalk.adapters.CoinsAdapter
-import com.example.coinstalk.adapters.GainersAdapter
-import com.example.coinstalk.databinding.FragmentHomeBinding
+import com.example.coinstalk.databinding.FragmentCoinDetailBinding
+import com.example.coinstalk.databinding.FragmentFavouritesBinding
 import com.example.coinstalk.utils.Result
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class FavouritesFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    lateinit var binding: FragmentFavouritesBinding
     private val viewModel: StalkViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+    ): View? {
+        viewModel.getFavouriteCoins()
         activity?.findViewById<BottomNavigationView>(R.id.navigation)?.visibility = View.VISIBLE
+        binding = FragmentFavouritesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getRemoteCoins()
+
         val coinAdapter = CoinsAdapter {
-           navigateToDetail(it)
+            navigateToDetail(it)
         }
 
-        val gainersAdapter = GainersAdapter {
-           navigateToDetail(it)
-        }
-
-        binding.coinsRv.apply {
+        binding.favesRv.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = coinAdapter
         }
 
-        binding.gainersRv.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = gainersAdapter
-        }
-
-        viewModel.coins.observe(viewLifecycleOwner, { result ->
+        viewModel.favCoins.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Result.Success -> {
                     coinAdapter.submitList(result.data)
-                    gainersAdapter.submitList(result.data)
                 }
                 is Result.Error -> {
 
@@ -71,14 +60,12 @@ class HomeFragment : Fragment() {
                 }
             }
 
-
         })
     }
 
-    private fun navigateToDetail(id : String){
+    private fun navigateToDetail(id: String) {
         val bundle = bundleOf("coin_id" to id)
-        findNavController().navigate(R.id.action_homeFragment_to_coinDetailFragment, bundle)
+        findNavController().navigate(R.id.action_favouritesFragment_to_coinDetailFragment, bundle)
     }
-
 
 }
