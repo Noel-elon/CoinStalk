@@ -8,6 +8,8 @@ import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
+import androidx.navigation.NavDeepLinkBuilder
+import com.example.coinstalk.MainActivity
 import com.example.coinstalk.R
 import com.example.coinstalk.StalkCoin
 
@@ -16,7 +18,6 @@ fun sendNotification(context: Context, coin: StalkCoin, userAlias: String) {
     val notificationManager = context
         .getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-    // We need to create a NotificationChannel associated with our CHANNEL_ID before sending a notification.
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
         && notificationManager.getNotificationChannel(CHANNEL_ID) == null
     ) {
@@ -29,22 +30,24 @@ fun sendNotification(context: Context, coin: StalkCoin, userAlias: String) {
         notificationManager.createNotificationChannel(channel)
     }
 
-    // val intent = ReminderDescriptionActivity.newIntent(context.applicationContext, reminderDataItem)
+    val pendingIntent = NavDeepLinkBuilder(context)
+        .setComponentName(MainActivity::class.java)
+        .setGraph(R.navigation.nav_graph)
+        .setDestination(R.id.favouritesFragment)
+        .createPendingIntent()
 
-//    //create a pending intent that opens ReminderDescriptionActivity when the user clicks on the notification
-//    val stackBuilder = TaskStackBuilder.create(context)
-//        .addParentStack(ReminderDescriptionActivity::class.java)
-//        .addNextIntent(intent)
-//    val notificationPendingIntent = stackBuilder
-//        .getPendingIntent(getUniqueId(), PendingIntent.FLAG_UPDATE_CURRENT)
-
-//    build the notification object with the data to be shown
     val notification = NotificationCompat.Builder(context, CHANNEL_ID)
         .setSmallIcon(R.mipmap.ic_launcher)
         .setContentTitle("Hey $userAlias!, Stalk update")
         .setContentText(notificationMessage(coin))
-        //  .setContentIntent(notificationPendingIntent)
         .setAutoCancel(true)
+        .addAction(
+            NotificationCompat.Action(
+                null,
+                context.getString(R.string.notif_button),
+                pendingIntent
+            )
+        )
         .build()
 
     notificationManager.notify(NOTIF_ID, notification)
@@ -79,7 +82,6 @@ private fun notificationMessage(coin: StalkCoin): String {
     }else{
         "down"
     }
-    return "${coin.symbol} is $upOrDown by ${coin.change.twoDecimals()} in the last 24 hours!" +
-            "Click to see how your coins are faring."
+    return "${coin.symbol} is $upOrDown by ${coin.change.twoDecimals()} in the last 24 hours!"
 
 }

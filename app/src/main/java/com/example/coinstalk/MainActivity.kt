@@ -23,15 +23,12 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     lateinit var navHostFragment: NavHostFragment
     lateinit var binding: ActivityMainBinding
-    @Inject
-    lateinit var helper: SharedPreferenceHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpNavigation()
-        setUpWorker()
 
 
     }
@@ -45,20 +42,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun setUpWorker() {
-        if (helper.randomCoin.isNotEmpty()) {
-            val data = Data.Builder()
-                .putString(RANDOM_COIN_ID, helper.randomCoin)
-                .build()
-            val notifyRequest =
-                PeriodicWorkRequestBuilder<StalkWorker>(2, TimeUnit.MINUTES)
-                    .setInputData(data)
-                    .build()
-            WorkManager
-                .getInstance(applicationContext)
-                .enqueue(notifyRequest)
-        }
-    }
 
 
 }

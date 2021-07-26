@@ -16,12 +16,28 @@ import javax.inject.Inject
 @HiltAndroidApp
 class StalkApp : Application() {
 
+    @Inject
+    lateinit var helper: SharedPreferenceHelper
     override fun onCreate() {
         super.onCreate()
-
+        setUpWorker()
         Timber.plant(Timber.DebugTree())
     }
 
+    private fun setUpWorker() {
+        if (helper.randomCoin.isNotEmpty()) {
+            val data = Data.Builder()
+                .putString(RANDOM_COIN_ID, helper.randomCoin)
+                .build()
+            val notifyRequest =
+                PeriodicWorkRequestBuilder<StalkWorker>(1, TimeUnit.DAYS)
+                    .setInputData(data)
+                    .build()
+            WorkManager
+                .getInstance(applicationContext)
+                .enqueue(notifyRequest)
+        }
+    }
 
 
 }

@@ -13,4 +13,5 @@
     <string name="hey_noel">Hey, Noel</string>
     <string name="channel_name">Stalk Channel</string>
     <string name="channel_description">Stalk Description</string>
+    <string name="notif_button">See Coins</string>
 </resources>

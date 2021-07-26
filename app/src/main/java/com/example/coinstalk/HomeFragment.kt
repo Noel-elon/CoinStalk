@@ -1,5 +1,6 @@
 package com.example.coinstalk
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,14 +13,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.Data
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.coinstalk.adapters.CoinsAdapter
 import com.example.coinstalk.adapters.GainersAdapter
 import com.example.coinstalk.databinding.FragmentHomeBinding
 import com.example.coinstalk.utils.COIN_ID
+import com.example.coinstalk.utils.RANDOM_COIN_ID
 import com.example.coinstalk.utils.Result
 import com.example.coinstalk.utils.SharedPreferenceHelper
+import com.example.coinstalk.worker.StalkWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -40,10 +47,10 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getRemoteCoins()
-
         binding.homeNameTv.text = "Hey, ${helper.userAlias}"
         val coinAdapter = CoinsAdapter {
             navigateToDetail(it)
@@ -111,6 +118,9 @@ class HomeFragment : Fragment() {
         val bundle = bundleOf(COIN_ID to id)
         findNavController().navigate(R.id.action_homeFragment_to_coinDetailFragment, bundle)
     }
+
+
+
 
 
 }
