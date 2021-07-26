@@ -23,6 +23,7 @@ class StalkViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher,
     private val getCoinsRemote: FetchCoinsRemoteUseCase,
     private val getCoinsLocal: GetAllCoinsUseCase,
+    private val mapper: StalkMapper,
     private val getCoinById: FetchCoinByIdUseCase,
     private val saveCoins: SaveCoinsUseCase,
     private val updateCoin: UpdateCoinUseCase,
@@ -31,6 +32,9 @@ class StalkViewModel @Inject constructor(
 
     private val _coins = MutableLiveData<Result<List<StalkCoin>>>()
     val coins = _coins as LiveData<Result<List<StalkCoin>>>
+
+    private val _remoteCoins = MutableLiveData<List<StalkCoin>>()
+    val remoteCoins = _remoteCoins as LiveData<List<StalkCoin>>
 
     private val _favResponse = MutableLiveData<Result<String>>()
     val favResponse = _favResponse as LiveData<Result<String>>
@@ -54,7 +58,7 @@ class StalkViewModel @Inject constructor(
                     _coins.postValue(Result.Error(it))
                 }
                 .collect { coinCache ->
-                   // saveCoins(coinCache)
+                    _remoteCoins.postValue(mapper.mapToSecond(coinCache))
                 }
         }
     }
@@ -120,9 +124,9 @@ class StalkViewModel @Inject constructor(
         }
     }
 
-    private fun saveCoins(coins: List<StalkCache>) {
+     fun saveCoins(coins: List<StalkCoin>) {
         viewModelScope.launch(dispatcher) {
-            saveCoins.execute(coins).collect { }
+            saveCoins.execute(mapper.mapToFirst(coins)).collect { }
         }
     }
 

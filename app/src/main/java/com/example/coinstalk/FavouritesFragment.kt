@@ -19,17 +19,22 @@ import com.example.coinstalk.databinding.FragmentFavouritesBinding
 import com.example.coinstalk.utils.COIN_ID
 import com.example.coinstalk.utils.RANDOM_COIN_ID
 import com.example.coinstalk.utils.Result
+import com.example.coinstalk.utils.SharedPreferenceHelper
 import com.example.coinstalk.worker.StalkWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class FavouritesFragment : Fragment() {
 
     lateinit var binding: FragmentFavouritesBinding
     private val viewModel: StalkViewModel by viewModels()
+
+    @Inject
+    lateinit var prefHelper: SharedPreferenceHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,7 +64,8 @@ class FavouritesFragment : Fragment() {
                 is Result.Success -> {
                     coinAdapter.submitList(result.data)
                     result.data?.let {
-                        setUpWorker(it)
+                        val coinString = Gson().toJson(it.random())
+                        prefHelper.randomCoin = coinString
                     }
                 }
                 is Result.Error -> {
@@ -79,20 +85,5 @@ class FavouritesFragment : Fragment() {
         findNavController().navigate(R.id.action_favouritesFragment_to_coinDetailFragment, bundle)
     }
 
-    private fun setUpWorker(coins: List<StalkCoin>) {
-        if (coins.isNotEmpty()) {
-            val coinString = Gson().toJson(coins.random())
-            val data = Data.Builder()
-                .putString(RANDOM_COIN_ID, coinString)
-                .build()
-            val notifyRequest =
-                PeriodicWorkRequestBuilder<StalkWorker>(2, TimeUnit.MINUTES)
-                    .setInputData(data)
-                    .build()
-            WorkManager
-                .getInstance(requireContext())
-                .enqueue(notifyRequest)
-        }
-    }
 
 }

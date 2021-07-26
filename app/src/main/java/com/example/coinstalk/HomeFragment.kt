@@ -17,14 +17,20 @@ import com.example.coinstalk.adapters.GainersAdapter
 import com.example.coinstalk.databinding.FragmentHomeBinding
 import com.example.coinstalk.utils.COIN_ID
 import com.example.coinstalk.utils.Result
+import com.example.coinstalk.utils.SharedPreferenceHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: StalkViewModel by viewModels()
+    private lateinit var savedCoins: List<StalkCoin>
+
+    @Inject
+    lateinit var helper: SharedPreferenceHelper
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,12 +43,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getRemoteCoins()
+
+        binding.homeNameTv.text = "Hey, ${helper.userAlias}"
         val coinAdapter = CoinsAdapter {
-           navigateToDetail(it)
+            navigateToDetail(it)
         }
 
         val gainersAdapter = GainersAdapter {
-           navigateToDetail(it)
+            navigateToDetail(it)
         }
 
         binding.coinsRv.apply {
@@ -62,6 +70,10 @@ class HomeFragment : Fragment() {
                 is Result.Success -> {
                     coinAdapter.submitList(result.data)
                     gainersAdapter.submitList(result.data)
+                    result.data?.let {
+                        savedCoins = it
+                    }
+
                 }
                 is Result.Error -> {
 
@@ -74,9 +86,28 @@ class HomeFragment : Fragment() {
 
 
         })
+
+        viewModel.remoteCoins.observe(viewLifecycleOwner, { coins ->
+            if (savedCoins.isNotEmpty()) {
+                coins.forEach {
+                    val saved = savedCoins.find { s ->
+                        s.uuid == it.uuid
+                    }
+                    if (saved != null && saved.isFavorite) {
+                        coins.find { c ->
+                            c.uuid == it.uuid
+                        }?.isFavorite = true
+                    }
+                }
+                viewModel.saveCoins(coins)
+            } else {
+                viewModel.saveCoins(coins)
+            }
+
+        })
     }
 
-    private fun navigateToDetail(id : String){
+    private fun navigateToDetail(id: String) {
         val bundle = bundleOf(COIN_ID to id)
         findNavController().navigate(R.id.action_homeFragment_to_coinDetailFragment, bundle)
     }
