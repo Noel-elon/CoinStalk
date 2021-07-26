@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coinstalk.adapters.CoinsAdapter
 import com.example.coinstalk.adapters.GainersAdapter
 import com.example.coinstalk.databinding.FragmentHomeBinding
+import com.example.coinstalk.utils.COIN_ID
 import com.example.coinstalk.utils.Result
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -76,7 +77,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToDetail(id : String){
-        val bundle = bundleOf("coin_id" to id)
+        val bundle = bundleOf(COIN_ID to id)
         findNavController().navigate(R.id.action_homeFragment_to_coinDetailFragment, bundle)
     }
 

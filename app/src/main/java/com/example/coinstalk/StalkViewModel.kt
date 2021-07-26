@@ -54,7 +54,7 @@ class StalkViewModel @Inject constructor(
                     _coins.postValue(Result.Error(it))
                 }
                 .collect { coinCache ->
-                    saveCoins(coinCache)
+                   // saveCoins(coinCache)
                 }
         }
     }

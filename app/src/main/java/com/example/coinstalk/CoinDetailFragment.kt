@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.coinstalk.databinding.FragmentCoinDetailBinding
@@ -20,8 +21,9 @@ import java.lang.IllegalArgumentException
 @AndroidEntryPoint
 class CoinDetailFragment : Fragment() {
 
-    lateinit var binding: FragmentCoinDetailBinding
-    private val coinId by lazy { arguments?.getString("coin_id") }
+    private lateinit var binding: FragmentCoinDetailBinding
+    private lateinit var currentCoin: StalkCoin
+    private val coinId by lazy { arguments?.getString(COIN_ID) }
     private val viewModel: StalkViewModel by viewModels()
 
     override fun onCreateView(
@@ -40,11 +42,48 @@ class CoinDetailFragment : Fragment() {
             viewModel.getSingleCoin(it)
         }
 
+        binding.favButton.setOnClickListener {
+            if (!currentCoin.isFavorite) {
+                binding.favButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_favorite_border
+                    )
+                )
+                viewModel.toggleFavouriteCoin(currentCoin.uuid, true)
+            } else {
+                binding.favButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_baseline_favorite
+                    )
+                )
+                viewModel.toggleFavouriteCoin(currentCoin.uuid, false)
+            }
+        }
+
+
         viewModel.singleCoin.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Result.Success -> {
                     result.data?.let { coin ->
                         populateViews(coin)
+                        currentCoin = coin
+                        if (!coin.isFavorite) {
+                            binding.favButton.setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_favorite_border
+                                )
+                            )
+                        } else {
+                            binding.favButton.setImageDrawable(
+                                ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.ic_baseline_favorite
+                                )
+                            )
+                        }
                     }
                 }
                 is Result.Error -> {
@@ -55,6 +94,26 @@ class CoinDetailFragment : Fragment() {
 
                 }
             }
+        })
+
+        viewModel.favResponse.observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is Result.Success -> {
+                    response.data?.let { msg ->
+                        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+                is Result.Error -> {
+
+                    Toast.makeText(requireContext(), response.errorMessage, Toast.LENGTH_SHORT)
+                        .show()
+                }
+                else -> {
+
+                }
+            }
+
         })
     }
 

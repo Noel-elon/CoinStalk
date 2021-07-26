@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:text="Your Favourites"
         android:textColor="@color/black"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/poppins_semibold"
         android:textSize="@dimen/medium_text"
         android:layout_marginTop="@dimen/margin_16"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
