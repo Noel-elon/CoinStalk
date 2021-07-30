@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: StalkViewModel by viewModels()
-    private lateinit var savedCoins: List<StalkCoin>
+    private var savedCoins: List<StalkCoin>? = null
 
     @Inject
     lateinit var helper: SharedPreferenceHelper
@@ -95,9 +95,9 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.remoteCoins.observe(viewLifecycleOwner, { coins ->
-            if (savedCoins.isNotEmpty()) {
+            if (savedCoins?.isNotEmpty() == true) {
                 coins.forEach {
-                    val saved = savedCoins.find { s ->
+                    val saved = savedCoins?.find { s ->
                         s.uuid == it.uuid
                     }
                     if (saved != null && saved.isFavorite) {

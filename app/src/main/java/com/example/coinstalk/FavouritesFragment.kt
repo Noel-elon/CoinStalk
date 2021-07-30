@@ -32,6 +32,7 @@ class FavouritesFragment : Fragment() {
 
     lateinit var binding: FragmentFavouritesBinding
     private val viewModel: StalkViewModel by viewModels()
+    private var savedCoins: List<StalkCoin>? = null
 
     @Inject
     lateinit var prefHelper: SharedPreferenceHelper
@@ -48,7 +49,7 @@ class FavouritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.getRemoteCoins()
         val coinAdapter = CoinsAdapter {
             navigateToDetail(it)
         }
@@ -64,6 +65,7 @@ class FavouritesFragment : Fragment() {
                 is Result.Success -> {
                     coinAdapter.submitList(result.data)
                     result.data?.let {
+                        savedCoins = it
                         val coinString = Gson().toJson(it.random())
                         prefHelper.randomCoin = coinString
                     }
@@ -75,6 +77,33 @@ class FavouritesFragment : Fragment() {
                 else -> {
 
                 }
+            }
+
+        })
+
+
+        viewModel.remoteCoins.observe(viewLifecycleOwner, { coins ->
+            if (savedCoins?.isNotEmpty() == true) {
+                coins.forEach {
+                    val saved = savedCoins?.find { s ->
+                        s.uuid == it.uuid
+                    }
+                    if (saved != null && saved.isFavorite) {
+                        coins.find { c ->
+                            c.uuid == it.uuid
+                        }?.isFavorite = true
+                    }
+                }
+                viewModel.saveCoins(coins)
+                coinAdapter.submitList(coins.filter {
+                    it.isFavorite
+                })
+
+            } else {
+                viewModel.saveCoins(coins)
+                coinAdapter.submitList(coins.filter {
+                    it.isFavorite
+                })
             }
 
         })

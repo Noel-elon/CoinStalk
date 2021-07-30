@@ -38,7 +38,7 @@ fun sendNotification(context: Context, coin: StalkCoin, userAlias: String) {
 
     val notification = NotificationCompat.Builder(context, CHANNEL_ID)
         .setSmallIcon(R.mipmap.ic_launcher)
-        .setContentTitle("Hey $userAlias!, Stalk update")
+        .setContentTitle("Hey $userAlias!")
         .setContentText(notificationMessage(coin))
         .setAutoCancel(true)
         .addAction(
@@ -77,11 +77,5 @@ fun createNotifChannel(context: Context) {
 
 
 private fun notificationMessage(coin: StalkCoin): String {
-  val upOrDown = if (gained(coin.change)){
-        "up"
-    }else{
-        "down"
-    }
-    return "${coin.symbol} is $upOrDown by ${coin.change.twoDecimals()} in the last 24 hours!"
-
+    return "Check how ${coin.symbol} and your favs are faring today!"
 }

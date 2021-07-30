@@ -37,7 +37,6 @@ class CoinDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.findViewById<BottomNavigationView>(R.id.navigation)?.visibility = View.GONE
-
         coinId?.let {
             viewModel.getSingleCoin(it)
         }
