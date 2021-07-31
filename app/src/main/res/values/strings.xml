@@ -14,4 +14,15 @@
     <string name="channel_name">Stalk Channel</string>
     <string name="channel_description">Stalk Description</string>
     <string name="notif_button">See Coins</string>
+    <string name="marketcap">MarketCap:</string>
+    <string name="marketcap_placeholder">2345565</string>
+    <string name="symbol_place_holder">BTC</string>
+    <string name="symbol">Symbol:</string>
+    <string name="in_24_hours">in 24 hours</string>
+    <string name="percentage_place_holder">25%</string>
+    <string name="usd">USD</string>
+    <string name="price_place_holder">25000</string>
+    <string name="current_price">Current Price</string>
+    <string name="bitcoin">Bitcoin</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>

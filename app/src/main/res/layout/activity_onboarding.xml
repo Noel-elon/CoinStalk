@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/trans_white"
     android:layout_height="match_parent"
     tools:context=".OnboardingActivity">
 
@@ -10,7 +11,7 @@
         android:id="@+id/onboarding_desc_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/onboarding_desc"
         android:layout_marginTop="@dimen/margin_32"
         android:textSize="@dimen/big_text"
@@ -23,7 +24,7 @@
         android:id="@+id/your_name_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/whats_your_name"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/margin_32"
@@ -46,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@color/white"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/poppins"
             android:hint="@string/your_name_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,6 +60,7 @@
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
         app:cornerRadius="4dp"
+        android:fontFamily="@font/poppins"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/onboarding_guide_2"
         app:layout_constraintStart_toStartOf="@+id/onboarding_guide_1"

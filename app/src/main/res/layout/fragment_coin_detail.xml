@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/trans_white"
     android:layout_height="match_parent"
+    app:layoutDescription="@xml/stalk_scene"
     tools:context=".CoinDetailFragment">
 
 
@@ -12,7 +13,7 @@
         android:id="@+id/detail_name_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Bitcoin"
+        android:text="@string/bitcoin"
         android:textSize="@dimen/medium_text"
         android:fontFamily="@font/poppins_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/detail_iv"
@@ -49,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="Current Price"
+                android:text="@string/current_price"
                 android:textSize="@dimen/tiny_text"
                 app:layout_constraintBottom_toTopOf="@+id/detail_price_tv"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_4"
                 android:fontFamily="@font/poppins"
-                android:text="25000"
+                android:text="@string/price_place_holder"
                 android:textSize="@dimen/big_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/per_coin_tv"
@@ -75,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="USD"
+                android:text="@string/usd"
                 android:textSize="@dimen/medium_text"
                 app:layout_constraintBottom_toBottomOf="@+id/detail_price_tv"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_4"
                 android:fontFamily="@font/poppins"
-                android:text="25%"
+                android:text="@string/percentage_place_holder"
                 android:textSize="@dimen/small_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/time_tv"
@@ -101,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="in one day"
+                android:text="@string/in_24_hours"
                 android:textSize="@dimen/tiny_text"
                 app:layout_constraintBottom_toBottomOf="@+id/detail_change_tv"
                 app:layout_constraintEnd_toEndOf="@+id/per_coin_tv"
@@ -147,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_16"
                 android:fontFamily="@font/poppins"
-                android:text="Symbol: "
+                android:text="@string/symbol"
                 android:textSize="@dimen/small_text" />
 
 
@@ -157,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_4"
                 android:fontFamily="@font/poppins"
-                android:text="BTC"
+                android:text="@string/symbol_place_holder"
                 android:textSize="@dimen/small_text" />
 
 
@@ -194,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_16"
                 android:fontFamily="@font/poppins"
-                android:text="MarketCap: "
+                android:text="@string/marketcap"
                 android:textSize="@dimen/small_text" />
 
 
@@ -205,7 +206,7 @@
                 android:layout_marginStart="@dimen/margin_4"
                 android:fontFamily="@font/poppins"
                 android:maxLines="1"
-                android:text="2345565"
+                android:text="@string/marketcap_placeholder"
                 android:textSize="@dimen/small_text" />
 
 
@@ -242,4 +243,4 @@
         app:layout_constraintGuide_begin="@dimen/margin_16" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
