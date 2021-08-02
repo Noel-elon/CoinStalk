@@ -14,6 +14,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/bitcoin"
+        android:textColor="@color/color_text"
         android:textSize="@dimen/medium_text"
         android:fontFamily="@font/poppins_semibold"
         app:layout_constraintBottom_toBottomOf="@+id/detail_iv"
@@ -50,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
+                android:textColor="@color/color_text"
                 android:text="@string/current_price"
                 android:textSize="@dimen/tiny_text"
                 app:layout_constraintBottom_toTopOf="@+id/detail_price_tv"
@@ -63,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_4"
                 android:fontFamily="@font/poppins"
+                android:textColor="@color/color_text"
                 android:text="@string/price_place_holder"
                 android:textSize="@dimen/big_text"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -76,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
+                android:textColor="@color/color_text"
                 android:text="@string/usd"
                 android:textSize="@dimen/medium_text"
                 app:layout_constraintBottom_toBottomOf="@+id/detail_price_tv"
@@ -89,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_4"
                 android:fontFamily="@font/poppins"
+                android:textColor="@color/color_text"
                 android:text="@string/percentage_place_holder"
                 android:textSize="@dimen/small_text"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -102,6 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
+                android:textColor="@color/color_text"
                 android:text="@string/in_24_hours"
                 android:textSize="@dimen/tiny_text"
                 app:layout_constraintBottom_toBottomOf="@+id/detail_change_tv"
@@ -148,6 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_16"
                 android:fontFamily="@font/poppins"
+                android:textColor="@color/color_text"
                 android:text="@string/symbol"
                 android:textSize="@dimen/small_text" />
 
@@ -158,6 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_4"
                 android:fontFamily="@font/poppins"
+                android:textColor="@color/color_text"
                 android:text="@string/symbol_place_holder"
                 android:textSize="@dimen/small_text" />
 
@@ -195,6 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_16"
                 android:fontFamily="@font/poppins"
+                android:textColor="@color/color_text"
                 android:text="@string/marketcap"
                 android:textSize="@dimen/small_text" />
 
@@ -205,6 +214,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_4"
                 android:fontFamily="@font/poppins"
+                android:textColor="@color/color_text"
                 android:maxLines="1"
                 android:text="@string/marketcap_placeholder"
                 android:textSize="@dimen/small_text" />

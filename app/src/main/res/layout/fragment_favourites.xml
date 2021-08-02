@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your Favourites"
-        android:textColor="@color/black"
+        android:textColor="@color/color_text"
         android:fontFamily="@font/poppins_semibold"
         android:textSize="@dimen/medium_text"
         android:layout_marginTop="@dimen/margin_16"

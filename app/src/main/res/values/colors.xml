@@ -9,6 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#ff0000</color>
     <color name="green">#98fb98</color>
+    <color name="color_btm_nav">#181A2F</color>
+    <color name="color_text">#181A2F</color>
+    <color name="color_card_bg">#ffffff</color>
     <color name="trans_white">#f3f6ff</color>
 
 </resources>

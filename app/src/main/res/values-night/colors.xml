@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="trans_white">#181A2F</color>
+    <color name="color_text">#f3f6ff</color>
+    <color name="color_btm_nav">#f3f6ff</color>
+    <color name="color_card_bg">#272B42</color>
+</resources>

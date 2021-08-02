@@ -1,21 +1,13 @@
 package com.example.coinstalk
 
-import android.R
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import androidx.work.Data
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
 import com.example.coinstalk.databinding.ActivityMainBinding
-import com.example.coinstalk.utils.RANDOM_COIN_ID
 import com.example.coinstalk.utils.SharedPreferenceHelper
-import com.example.coinstalk.worker.StalkWorker
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.coinstalk.utils.ThemeHelper
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -24,9 +16,16 @@ class MainActivity : AppCompatActivity() {
     lateinit var navHostFragment: NavHostFragment
     lateinit var binding: ActivityMainBinding
 
+    @Inject
+    lateinit var helper: SharedPreferenceHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        if (helper.theme.isNotEmpty()) {
+            ThemeHelper.applyTheme(helper.theme)
+        }
         setContentView(binding.root)
         setUpNavigation()
 
@@ -41,7 +40,6 @@ class MainActivity : AppCompatActivity() {
             navHostFragment.navController
         )
     }
-
 
 
 }
