@@ -1,6 +1,7 @@
 package com.example.coinstalk.di
 
 import android.content.Context
+import com.example.coinstalk.BuildConfig
 import com.example.coinstalk.remote.StalkApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -39,7 +40,7 @@ class NetworkModule {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val newRequest = chain.request().newBuilder()
-                    .addHeader("x-access-token","coinranking7cc2b9971315ebc53ee33a8654395c8e28d3f63d97acfc5b")
+                    .addHeader("x-access-token", BuildConfig.API_KEY)
                     .build()
                 chain.proceed(newRequest)
             }
