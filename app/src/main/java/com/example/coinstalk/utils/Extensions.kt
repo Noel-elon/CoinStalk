@@ -23,6 +23,7 @@ fun ImageView.loadUrl(url: String) {
         .crossfade(true)
         .crossfade(500)
         .error(R.drawable.ic_coins)
+        .placeholder(R.drawable.ic_coins)
         .data(url)
         .target(this)
         .build()
