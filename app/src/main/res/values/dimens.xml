@@ -10,4 +10,5 @@
     <dimen name="margin_4">4dp</dimen>
     <dimen name="tiny_text">12sp</dimen>
     <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_150">150dp</dimen>
 </resources>

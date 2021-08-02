@@ -63,11 +63,14 @@ class FavouritesFragment : Fragment() {
         viewModel.favCoins.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Result.Success -> {
-                    coinAdapter.submitList(result.data)
-                    result.data?.let {
-                        savedCoins = it
-                        val coinString = Gson().toJson(it.random())
-                        prefHelper.randomCoin = coinString
+                    if (result.data?.isNotEmpty() == true) {
+                        coinAdapter.submitList(result.data)
+                        result.data?.let {
+                            binding.noFavesTxt.visibility = View.GONE
+                            savedCoins = it
+                            val coinString = Gson().toJson(it.random())
+                            prefHelper.randomCoin = coinString
+                        }
                     }
                 }
                 is Result.Error -> {
@@ -95,15 +98,23 @@ class FavouritesFragment : Fragment() {
                     }
                 }
                 viewModel.saveCoins(coins)
-                coinAdapter.submitList(coins.filter {
-                    it.isFavorite
-                })
 
+                val list = coins.filter {
+                    it.isFavorite
+                }
+                if (!list.isNullOrEmpty()) {
+                    coinAdapter.submitList(list)
+                    binding.noFavesTxt.visibility = View.GONE
+                }
             } else {
                 viewModel.saveCoins(coins)
-                coinAdapter.submitList(coins.filter {
+                val list = coins.filter {
                     it.isFavorite
-                })
+                }
+                if (!list.isNullOrEmpty()) {
+                    coinAdapter.submitList(list)
+                    binding.noFavesTxt.visibility = View.GONE
+                }
             }
 
         })

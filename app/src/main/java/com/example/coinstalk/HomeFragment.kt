@@ -19,10 +19,7 @@ import androidx.work.WorkManager
 import com.example.coinstalk.adapters.CoinsAdapter
 import com.example.coinstalk.adapters.GainersAdapter
 import com.example.coinstalk.databinding.FragmentHomeBinding
-import com.example.coinstalk.utils.COIN_ID
-import com.example.coinstalk.utils.RANDOM_COIN_ID
-import com.example.coinstalk.utils.Result
-import com.example.coinstalk.utils.SharedPreferenceHelper
+import com.example.coinstalk.utils.*
 import com.example.coinstalk.worker.StalkWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -75,15 +72,20 @@ class HomeFragment : Fragment() {
         viewModel.coins.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Result.Success -> {
+                    binding.coinsProgress.visibility = View.GONE
+                    binding.gainersProgress.visibility = View.GONE
                     coinAdapter.submitList(result.data)
-                    gainersAdapter.submitList(result.data)
+                    gainersAdapter.submitList(result.data?.filter {
+                        gained(it.change)
+                    })
                     result.data?.let {
                         savedCoins = it
                     }
 
                 }
                 is Result.Error -> {
-
+                    binding.coinsProgress.visibility = View.GONE
+                    binding.gainersProgress.visibility = View.GONE
                     Toast.makeText(requireContext(), result.errorMessage, Toast.LENGTH_SHORT).show()
                 }
                 else -> {
@@ -118,9 +120,6 @@ class HomeFragment : Fragment() {
         val bundle = bundleOf(COIN_ID to id)
         findNavController().navigate(R.id.action_homeFragment_to_coinDetailFragment, bundle)
     }
-
-
-
 
 
 }

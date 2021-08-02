@@ -8,6 +8,7 @@ import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.bumptech.glide.Glide
+import com.example.coinstalk.R
 
 fun ImageView.loadRoundImage(imageUrl: String) {
     Glide.with(this).load(imageUrl).into(this)
@@ -21,6 +22,7 @@ fun ImageView.loadUrl(url: String) {
     val request = ImageRequest.Builder(this.context)
         .crossfade(true)
         .crossfade(500)
+        .error(R.drawable.ic_coins)
         .data(url)
         .target(this)
         .build()

@@ -25,4 +25,5 @@
     <string name="current_price">Current Price</string>
     <string name="bitcoin">Bitcoin</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="you_have_not_added_any_favourites">You have not added any favourites.</string>
 </resources>

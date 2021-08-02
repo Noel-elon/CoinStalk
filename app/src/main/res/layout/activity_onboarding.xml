@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/trans_white"
     android:layout_height="match_parent"
+    android:background="@color/trans_white"
     tools:context=".OnboardingActivity">
 
     <TextView
         android:id="@+id/onboarding_desc_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_32"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/onboarding_desc"
-        android:layout_marginTop="@dimen/margin_32"
-        android:textSize="@dimen/big_text"
         android:textColor="@color/color_text"
+        android:textSize="@dimen/medium_text"
         app:layout_constraintEnd_toStartOf="@id/onboarding_guide_2"
         app:layout_constraintStart_toStartOf="@id/onboarding_guide_1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,14 +24,15 @@
         android:id="@+id/your_name_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="@dimen/margin_32"
+        android:fontFamily="@font/poppins"
         android:text="@string/whats_your_name"
         android:textColor="@color/color_text"
-        android:layout_marginTop="@dimen/margin_32"
-        android:textSize="@dimen/medium_text"
+        android:textSize="@dimen/small_text"
         app:layout_constraintEnd_toStartOf="@id/onboarding_guide_2"
         app:layout_constraintStart_toStartOf="@id/onboarding_guide_1"
-        app:layout_constraintTop_toBottomOf="@id/onboarding_desc_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/crypto_iv"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -46,28 +47,38 @@
             android:id="@+id/your_name_et"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/color_card_bg"
             android:fontFamily="@font/poppins"
             android:hint="@string/your_name_hint" />
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <ImageView
+        android:id="@+id/crypto_iv"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/margin_150"
+        android:layout_marginTop="@dimen/margin_16"
+        android:src="@drawable/crypto"
+        app:layout_constraintEnd_toEndOf="@id/onboarding_guide_2"
+        app:layout_constraintStart_toStartOf="@id/onboarding_guide_1"
+        app:layout_constraintTop_toBottomOf="@+id/onboarding_desc_tv" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/next_button"
         style="@style/stalkButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/get_started"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/color_text"
-        app:cornerRadius="4dp"
+        android:backgroundTint="@color/color_card_bg"
         android:fontFamily="@font/poppins"
+        android:text="@string/get_started"
+        android:textColor="@color/color_text"
+        app:cornerRadius="@dimen/margin_4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/onboarding_guide_2"
         app:layout_constraintStart_toStartOf="@+id/onboarding_guide_1"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:strokeColor="@color/purple_200"
+        app:strokeColor="@color/color_text"
         app:strokeWidth="1dp" />
-
 
 
     <androidx.constraintlayout.widget.Guideline

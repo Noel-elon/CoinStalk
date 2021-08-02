@@ -42,4 +42,16 @@
         app:layout_constraintEnd_toEndOf="@+id/guideline8"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toBottomOf="@+id/faves_tv" />
+
+    <TextView
+        android:id="@+id/no_faves_txt"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="@color/color_text"
+        android:text="@string/you_have_not_added_any_favourites"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/faves_tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>
