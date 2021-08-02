@@ -103,7 +103,7 @@ class FavouritesFragment : Fragment() {
                     it.isFavorite
                 }
                 if (!list.isNullOrEmpty()) {
-                    coinAdapter.submitList(list)
+                    viewModel.getFavouriteCoins()
                     binding.noFavesTxt.visibility = View.GONE
                 }
             } else {
@@ -112,7 +112,7 @@ class FavouritesFragment : Fragment() {
                     it.isFavorite
                 }
                 if (!list.isNullOrEmpty()) {
-                    coinAdapter.submitList(list)
+                    viewModel.getFavouriteCoins()
                     binding.noFavesTxt.visibility = View.GONE
                 }
             }
