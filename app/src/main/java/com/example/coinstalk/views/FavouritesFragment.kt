@@ -1,4 +1,4 @@
-package com.example.coinstalk
+package com.example.coinstalk.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,21 +10,17 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.Data
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import com.example.coinstalk.R
+import com.example.coinstalk.StalkCoin
+import com.example.coinstalk.viewmodel.StalkViewModel
 import com.example.coinstalk.adapters.CoinsAdapter
-import com.example.coinstalk.databinding.FragmentCoinDetailBinding
 import com.example.coinstalk.databinding.FragmentFavouritesBinding
 import com.example.coinstalk.utils.COIN_ID
-import com.example.coinstalk.utils.RANDOM_COIN_ID
 import com.example.coinstalk.utils.Result
 import com.example.coinstalk.utils.SharedPreferenceHelper
-import com.example.coinstalk.worker.StalkWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @AndroidEntryPoint

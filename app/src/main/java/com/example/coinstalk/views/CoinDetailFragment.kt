@@ -1,4 +1,4 @@
-package com.example.coinstalk
+package com.example.coinstalk.views
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,10 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import com.example.coinstalk.R
+import com.example.coinstalk.StalkCoin
+import com.example.coinstalk.viewmodel.StalkViewModel
 import com.example.coinstalk.databinding.FragmentCoinDetailBinding
-import com.example.coinstalk.databinding.FragmentHomeBinding
 import com.example.coinstalk.utils.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint

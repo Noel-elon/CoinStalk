@@ -6,7 +6,7 @@
     android:background="@color/trans_white"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/stalk_scene"
-    tools:context=".CoinDetailFragment">
+    tools:context=".views.CoinDetailFragment">
 
 
     <TextView

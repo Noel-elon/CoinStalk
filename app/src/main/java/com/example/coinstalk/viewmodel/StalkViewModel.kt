@@ -1,12 +1,10 @@
-package com.example.coinstalk
+package com.example.coinstalk.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.coinstalk.local.StalkCache
-import com.example.coinstalk.mappers.RemoteMapper
-import com.example.coinstalk.mappers.SingleStalkMapper
+import com.example.coinstalk.StalkCoin
 import com.example.coinstalk.mappers.StalkMapper
 import com.example.coinstalk.usecases.*
 import com.example.coinstalk.utils.Result

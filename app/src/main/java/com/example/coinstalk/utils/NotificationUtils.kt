@@ -2,14 +2,11 @@ package com.example.coinstalk.utils
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import androidx.core.app.TaskStackBuilder
 import androidx.navigation.NavDeepLinkBuilder
-import com.example.coinstalk.MainActivity
+import com.example.coinstalk.views.MainActivity
 import com.example.coinstalk.R
 import com.example.coinstalk.StalkCoin
 

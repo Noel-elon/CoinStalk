@@ -14,14 +14,14 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.CoinStalk">
 
-        <activity android:name=".OnboardingActivity">
+        <activity android:name=".views.OnboardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".views.MainActivity">
         </activity>
 
         <meta-data

@@ -1,10 +1,11 @@
-package com.example.coinstalk
+package com.example.coinstalk.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.coinstalk.R
 import com.example.coinstalk.databinding.FragmentSettingsBinding
 import com.example.coinstalk.utils.SharedPreferenceHelper
 import com.example.coinstalk.utils.ThemeHelper

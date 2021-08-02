@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/trans_white"
-    tools:context=".FavouritesFragment">
+    tools:context=".views.FavouritesFragment">
 
 
     <androidx.constraintlayout.widget.Guideline

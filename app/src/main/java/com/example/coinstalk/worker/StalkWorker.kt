@@ -1,20 +1,14 @@
 package com.example.coinstalk.worker
 
 import android.content.Context
-import androidx.fragment.app.viewModels
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.coinstalk.StalkCoin
-import com.example.coinstalk.StalkViewModel
 import com.example.coinstalk.utils.PREF_NAME
 import com.example.coinstalk.utils.RANDOM_COIN_ID
 import com.example.coinstalk.utils.SharedPreferenceHelper
 import com.example.coinstalk.utils.sendNotification
 import com.google.gson.Gson
-import dagger.hilt.EntryPoint
-import dagger.hilt.InstallIn
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 class StalkWorker(context: Context, workerParameters: WorkerParameters) :
     Worker(context, workerParameters) {

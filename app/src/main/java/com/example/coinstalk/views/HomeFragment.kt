@@ -1,4 +1,4 @@
-package com.example.coinstalk
+package com.example.coinstalk.views
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,22 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.Data
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import com.example.coinstalk.R
+import com.example.coinstalk.StalkCoin
+import com.example.coinstalk.viewmodel.StalkViewModel
 import com.example.coinstalk.adapters.CoinsAdapter
 import com.example.coinstalk.adapters.GainersAdapter
 import com.example.coinstalk.databinding.FragmentHomeBinding
 import com.example.coinstalk.utils.*
-import com.example.coinstalk.worker.StalkWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @AndroidEntryPoint

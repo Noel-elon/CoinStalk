@@ -1,4 +1,4 @@
-package com.example.coinstalk
+package com.example.coinstalk.views
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
