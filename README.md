@@ -23,7 +23,7 @@ Build project
 * [Room](https://developer.android.com/training/data-storage/room)
 * [Navigation Components](https://developer.android.com/guide/navigation/navigation-getting-started)
 * [Workmanager](https://developer.android.com/reference/androidx/work/WorkManager)
-* [Retrofit] (https://square.github.io/retrofit/)
+* [Retrofit](https://square.github.io/retrofit/)
 * MVVM architecture
 
 ## Author
