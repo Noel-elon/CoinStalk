@@ -38,7 +38,7 @@ fun gained(change : String) : Boolean {
 fun String.twoDecimals(): String {
     val index: Int = this.indexOf('.')
     return if (index >= 0) {
-        substring(0, index + 3)
+        substring(0, index + 2)
     } else {
         this
     }

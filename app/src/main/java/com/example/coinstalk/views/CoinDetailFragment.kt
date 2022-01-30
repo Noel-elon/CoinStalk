@@ -47,7 +47,7 @@ class CoinDetailFragment : Fragment() {
                 binding.favButton.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_favorite_border
+                        R.drawable.ic_baseline_favorite
                     )
                 )
                 viewModel.toggleFavouriteCoin(currentCoin.uuid, true)
@@ -73,7 +73,7 @@ class CoinDetailFragment : Fragment() {
                             binding.favButton.setImageDrawable(
                                 ContextCompat.getDrawable(
                                     requireContext(),
-                                    R.drawable.ic_favorite_border
+                                    R.drawable.ic_baseline_favorite_border_24
                                 )
                             )
                         } else {

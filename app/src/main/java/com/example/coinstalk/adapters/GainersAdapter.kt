@@ -23,10 +23,10 @@ class GainersAdapter(
             coinAbbrevTv.text = item.symbol
             coinPriceTv.text = "$${item.price.twoDecimals()}"
             if (gained(item.change)){
-                gainTv.text = "+${item.change.twoDecimals()}"
+                gainTv.text = "+${item.change.twoDecimals()}%"
                     gainTv.setColor(R.color.green)
             }else{
-                gainTv.text = item.change.twoDecimals()
+                gainTv.text = "${item.change.twoDecimals()}%"
                 gainTv.setColor(R.color.red)
 
             }
